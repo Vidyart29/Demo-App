@@ -3,5 +3,5 @@
 from fitness_tools.composition.bodyfat import DurninWomersley
 data = DurninWomersley(23, 'female', (5, 7, 8, 12))
 data.body_density()
-print("body fat percentage: " +data )
+print("body fat percentage: " + str(data) )
 print("script executed successfully")
