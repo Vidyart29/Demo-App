@@ -1,0 +1,29 @@
+---
+- name: Stop and remove Apache if condition met
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Check if /tmp/remove_apache file exists
+      stat:
+        path: /tmp/remove_apache
+      register: remove_flag
+
+    - name: Stop Apache service
+      service:
+        name: httpd
+        state: stopped
+      when: remove_flag.stat.exists
+
+    - name: Remove Apache package
+      package:
+        name: httpd
+        state: absent
+      when: remove_flag.stat.exists
+
+    - name: Remove Apache config directory (optional cleanup)
+      file:
+        path: /etc/httpd
+        state: absent
+      when: remove_flag.stat.exists
+

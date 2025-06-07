@@ -1,0 +1,8 @@
+- name: Deploy environment-specific property file as hsmserver.properties
+  copy:
+    src: "hsmserver.properties.{{env_name}}"
+    dest: "/opt/hsmserver/hsmserver.properties"
+    owner: root
+    group: root
+    mode: '0644'
+

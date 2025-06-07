@@ -1,0 +1,8 @@
+- name: Deploy hsmserver.properties based on environment
+  hosts: fte
+  become: true
+  vars:
+    env_name: "{{ lookup('env', 'ENV') }}"
+  roles:
+    - prop-deploy-test
+
